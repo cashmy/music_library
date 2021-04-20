@@ -15,7 +15,7 @@ toggleCollapse = () => {
 render() {
   return (
     <Router>
-      <MDBNavbar color="blue" dark expand="md">
+      <MDBNavbar color="blue" dark expand="md" fixed="top">
         <MDBNavbarBrand>
           <strong className="white-text">Music Libary</strong>
         </MDBNavbarBrand>
