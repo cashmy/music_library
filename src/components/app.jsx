@@ -14,8 +14,8 @@ class App extends Component {
         return (
             // <MDBContainer>
             <div className="container-fluid">
-                <BackgroundImage />
                 <Navbar />
+                <BackgroundImage />
 
                 <Footer />
             </div>
