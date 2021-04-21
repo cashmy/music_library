@@ -8,12 +8,12 @@ class ModalPage extends Component {
     this.state = { 
       modal: false,
 
-      track: 0, 
-      title: '',
-      artist: '',
-      album: '',
-      release_date: '',
-      likes: 0
+      track: props.track, 
+      title: props.title,
+      artist: props.artist,
+      album: props.album,
+      release_date: props.release_date,
+      likes: props.likes,
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -28,7 +28,6 @@ class ModalPage extends Component {
   }
 
   handleSubmit = event => {
-    event.preventDefault();
     const song = {
       track: this.state.track,
       title: this.state.title,
@@ -38,42 +37,25 @@ class ModalPage extends Component {
       likes: this.state.likes
     }
 
-    console.log("Song:", song)
-    console.log("Now Posting")
-    axios.post('http://127.0.0.1:8000/songs/', (song))
+    axios.put('http://127.0.0.1:8000/songs/', (song))
     .then(res => {
       console.log(res);
       console.log(res.data);
       }
     )
     
-    console.log("Resetting State")
-    this.setState ( { 
-      track: 0, 
-      title: '',
-      artist: '',
-      album: '',
-      release_date: '',
-      likes: 0
-    })
-    console.log('Trying to toggle close...')
-     
-
   }
 
   toggle = () => {
     this.setState(
-      {modal: !this.state.modal},
-      () => console.log('Modal state:', this.state.modal)
-    );
-    
+      {modal: !this.state.modal});
   }
 
   render() {
     return (
 
       <MDBModal isOpen={this.state.modal} toggle={() => this.toggle}>
-        <MDBModalHeader toggle={this.toggle}><strong>Add a Song</strong></MDBModalHeader>
+        <MDBModalHeader className="editmodal" toggle={this.toggle}><strong>Update a Song</strong></MDBModalHeader>
         <MDBModalBody>
           <form onSubmit={this.handleSubmit}>
             <div className="grey-text">
@@ -103,7 +85,7 @@ class ModalPage extends Component {
                 validate error="wrong" success="right"/>
             </div>
             <MDBBtn color="secondary" onClick={this.toggle} >Cancel</MDBBtn>
-            <MDBBtn color="primary" type="submit" >Add</MDBBtn>
+            <MDBBtn color="primary" type="submit" >Save</MDBBtn>
           </form>
         </MDBModalBody>
       </MDBModal>
