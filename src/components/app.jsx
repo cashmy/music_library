@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { MDBContainer } from "mdbreact";
+import { MDBView } from "mdbreact";
 import Navbar from './Navbar/navbar';
 import Footer from './Footer/footer';
-import BackgroundImage from './BackgroundImage/backgroundImage';
 import MusicTable from './MusicTable/musicTable';
+
 
 class App extends Component {
 
@@ -27,16 +27,14 @@ class App extends Component {
     
     render() {
         return (
-            <MDBContainer>
-            {/* <div className="container-fluid"> */}
+            <div id="classicformpage">
                 <Navbar />
-                {/* <BackgroundImage /> */}
-                <MDBContainer style={{ marginTop: '75px'}}>
-                    <MusicTable songs={this.state.songs} />
-                </MDBContainer>
+                <MDBView>
+                    <MusicTable songs={this.state.songs} /> 
+                </MDBView>
                 <Footer />
-            {/* </div> */}
-            </MDBContainer>
+            </div>
+
         );
     }
 }
