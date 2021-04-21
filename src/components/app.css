@@ -50,3 +50,19 @@
   #classicformpage label {
     color: black !important;
   }
+
+  .modal-header{
+     background-color: darkorchid ;
+  }
+
+  .modal-header.editmodal{
+    background-color: rgb(50, 53, 204) ;
+ }
+
+ .modal-header.deletemodal{
+  background-color: red ;
+}
+
+  .modal-title {
+    color: white;
+  }

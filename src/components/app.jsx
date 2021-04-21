@@ -21,9 +21,29 @@ class App extends Component {
         this.setState({ 
             songs: response.data
         })
-        console.log(this.state.songs)
+        // this.mapSongsWithButton()
     }
 
+    // handleOnClickEdit = () => {
+    //     editSong.current.toggle();
+    // }
+
+    // mapSongsWithButton() {
+    //     let newSongsMapResult = this.state.songs.map((song) => {
+    //         song.action =   <MDBBtn
+    //                             icon='edit'
+    //                             className='cyan-text'
+    //                             size='lg'
+    //                             style={{ cursor: 'pointer' }}
+    //                             type="button"
+    //                             onClick={this.handleOnClickEdit}
+    //                         />;
+    //         return song;
+    //     });
+    //     this.setState({songs: newSongsMapResult});
+    //     console.log(this.state.songs)
+    //     return
+    // }
     
     render() {
         return (

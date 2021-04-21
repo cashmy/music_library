@@ -1,5 +1,4 @@
-import React from 'react';
-import {  } from 'mdbreact';
+import React, { useRef } from 'react';
 import { 
     MDBDataTable, 
     MDBCard, 
@@ -12,9 +11,44 @@ import {
     MDBContainer,
     MDBAnimation
 } from "mdbreact";
+import SongForm from '../SongForm/songForm';
+import UpdateSongForm from '../SongForm/updateSongForm';
 import '../app.css';
 
 const MusicTable = (props) => {
+    const addSong=useRef();
+    const editSong=useRef();
+
+    const handleOnClickAdd = () => {
+        addSong.current.toggle();
+    }
+
+    const handleOnClickEdit = () => {
+        editSong.current.toggle();
+    }
+
+    const mapSongsWithButton = () => {
+        let newSongsMapResult = props.songs.map((song) => {
+            song.edit = <MDBIcon
+                            icon='edit'
+                            className='cyan-text'
+                            size='lg'
+                            style={{ cursor: 'pointer' }}
+                            type="button"
+                            onClick={handleOnClickEdit}
+                            />;
+            song.delete = <MDBIcon
+                            icon='trash-alt'
+                            className='red-text'
+                            size='lg'
+                            style={{ cursor: 'pointer' }}
+                            type="button"
+                            onClick={handleOnClickEdit}
+                            />;
+            return song;
+        });
+        return newSongsMapResult
+    }
 
     const data = {
         columns: [
@@ -22,7 +56,8 @@ const MusicTable = (props) => {
             {
                 label: 'Track',
                 field: 'track',
-                sort: 'asc'
+                sort: 'asc',
+                width: 50
             },
             {
                 label: 'Title',
@@ -42,15 +77,29 @@ const MusicTable = (props) => {
             {
                 label: 'Rls Date',
                 field: 'release_date',
-                sort: 'asc'
+                sort: 'asc',
+                width: 100
             },
             {
                 label: 'Likes',
                 field: 'likes',
-                sort: 'asc'
+                sort: 'asc',
+                width: 50
             },
+            {
+                label: 'Edit',
+                field: 'edit',
+                sort: 'disabled',
+                width: 50
+            },
+            {
+                label: 'Del',
+                field: 'delete',
+                sort: 'disabled',
+                width: 50
+            }
         ],
-        rows: props.songs
+        rows: mapSongsWithButton()
 
     }
     
@@ -73,12 +122,16 @@ const MusicTable = (props) => {
                                             tag="a" 
                                             roll="button" 
                                             size="sm" 
-                                            floating gradient="blue">
+                                            floating gradient="blue"
+                                            onClick={handleOnClickAdd}>
                                         <MDBIcon icon="plus" />
                                     </MDBBtn>
                                 </MDBCardHeader>
                                 <MDBCardBody className="black-text">
-                                    <MDBDataTable 
+                                    <MDBDataTable
+                                        autowidth
+                                        scrollX
+                                        scrollY 
                                         className="black-text"
                                         responsive
                                         striped
@@ -92,6 +145,8 @@ const MusicTable = (props) => {
                         </MDBAnimation>
                     </MDBRow>
                 </MDBContainer>
+                <SongForm ref={addSong} />
+                <UpdateSongForm ref={editSong} />
             </MDBMask>
 
 
