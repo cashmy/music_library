@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBInput } from 'mdbreact';
 import axios from 'axios';
 
-class ModalPage extends Component {
+class UpdateModalPage extends Component {
   constructor(props) {
     super(props);
     this.state = { 
@@ -125,4 +125,4 @@ class ModalPage extends Component {
   }
 }
 
-export default ModalPage;
+export default UpdateModalPage;

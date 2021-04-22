@@ -13,12 +13,15 @@ import {
 } from "mdbreact";
 import SongForm from '../SongForm/songForm';
 import UpdateSongForm from '../SongForm/updateSongForm';
+import DeleteSongForm from '../SongForm/deleteSongForm';
 import '../app.css';
 
 const MusicTable = (props) => {
     const addSong=useRef();
     const editSong=useRef();
-    const songParam = {}
+    const deleteSong=useRef();
+
+    const songParam = {};
 
     const handleOnClickAdd = () => {
         addSong.current.toggle();
@@ -38,6 +41,16 @@ const MusicTable = (props) => {
         editSong.current.toggle();
     }
 
+    const handleOnClickDelete = (song) => {
+        songParam['id'] = song.id
+        songParam['title'] = song.title
+        songParam['artist'] = song.artist
+        
+        console.log('\n *** Music Table ***: ')
+        console.log('MT-hOCD SongParam: ', songParam)
+        deleteSong.current.toggle();
+    }
+
     const mapSongsWithButton = () => {
         let newSongsMapResult = props.songs.map((song) => {
             song.edit = <MDBIcon
@@ -54,7 +67,7 @@ const MusicTable = (props) => {
                             size='lg'
                             style={{ cursor: 'pointer' }}
                             type="button"
-                            onClick={() => handleOnClickEdit(song)}
+                            onClick={() => handleOnClickDelete(song)}
                             />;
             return song;
         });
@@ -158,6 +171,7 @@ const MusicTable = (props) => {
                 </MDBContainer>
                 <SongForm ref={addSong} />
                 <UpdateSongForm props={songParam} ref={editSong} />
+                <DeleteSongForm props={songParam} ref={deleteSong} />
             </MDBMask>
 
 
