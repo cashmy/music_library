@@ -18,12 +18,23 @@ import '../app.css';
 const MusicTable = (props) => {
     const addSong=useRef();
     const editSong=useRef();
+    const songParam = {}
 
     const handleOnClickAdd = () => {
         addSong.current.toggle();
     }
 
-    const handleOnClickEdit = () => {
+    const handleOnClickEdit = (song) => {
+        console.log('MT-hOCE-Song: ', song)
+        songParam['id'] = song.id
+        songParam['track'] = song.track
+        songParam['title'] = song.title
+        songParam['artist'] = song.artist
+        songParam['album'] = song.album
+        songParam['release_date'] = song.release_date
+        songParam['likes'] = song.likes
+
+        console.log('MT-hOCE-SongParam: ', songParam)
         editSong.current.toggle();
     }
 
@@ -35,7 +46,7 @@ const MusicTable = (props) => {
                             size='lg'
                             style={{ cursor: 'pointer' }}
                             type="button"
-                            onClick={handleOnClickEdit}
+                            onClick={() => handleOnClickEdit(song)}
                             />;
             song.delete = <MDBIcon
                             icon='trash-alt'
@@ -43,7 +54,7 @@ const MusicTable = (props) => {
                             size='lg'
                             style={{ cursor: 'pointer' }}
                             type="button"
-                            onClick={handleOnClickEdit}
+                            onClick={() => handleOnClickEdit(song)}
                             />;
             return song;
         });
@@ -146,7 +157,7 @@ const MusicTable = (props) => {
                     </MDBRow>
                 </MDBContainer>
                 <SongForm ref={addSong} />
-                <UpdateSongForm ref={editSong} />
+                <UpdateSongForm props={songParam} ref={editSong} />
             </MDBMask>
 
 

@@ -7,17 +7,18 @@ class ModalPage extends Component {
     super(props);
     this.state = { 
       modal: false,
-
-      track: props.track, 
-      title: props.title,
-      artist: props.artist,
-      album: props.album,
-      release_date: props.release_date,
-      likes: props.likes,
+      id: '',
+      track: 0, 
+      title: '',
+      artist: '',
+      album: '',
+      release_date: '',
+      likes: 0,
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
   }
 
 
@@ -29,6 +30,7 @@ class ModalPage extends Component {
 
   handleSubmit = event => {
     const song = {
+      id: this.state.id,
       track: this.state.track,
       title: this.state.title,
       artist: this.state.artist,
@@ -48,10 +50,35 @@ class ModalPage extends Component {
 
   toggle = () => {
     this.setState(
-      {modal: !this.state.modal});
+      {modal: !this.state.modal}
+      );
+  }
+
+  shouldComponentUpdate(nextProps){
+    console.log('**USF-Should Component Update**')
+    console.log('USF-SCU NextProps: ', nextProps)
+    console.log('USF-SCU thisState: ', this.state)
+    if (nextProps.id !== this.state.id ) {
+      // this.setState({
+      //   id: nextProps.id,
+      //   track: nextProps.track,
+      //   title: nextProps.title,
+      //   artist: nextProps.artist,
+      //   album: nextProps.album,
+      //   release_date: nextProps.release_date,
+      //   likes: nextProps.likes}) 
+      console.log("USF-SCU State:", this.state)
+      console.log('USF-SCU: state updated')
+      return true
+    }
+    else
+      console.log('USF-SCU: no change detected')
+      return false
   }
 
   render() {
+    console.log('USF-Render: props: ', this.props);
+    console.log("USF-Render State: ", this.state)
     return (
 
       <MDBModal isOpen={this.state.modal} toggle={() => this.toggle}>
