@@ -45,7 +45,7 @@ class DeleteModalPage extends Component {
   }
 
   render() {
-    console.log('\n*** Render ***')
+    console.log('\n*** Delete Render ***')
     console.log('DSF-Render: props: ', this.props);
     console.log('DSF-Render State: ', this.state)
     return (

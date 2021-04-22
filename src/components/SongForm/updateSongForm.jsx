@@ -80,7 +80,7 @@ class UpdateModalPage extends Component {
   }
 
   render() {
-    console.log('\n*** Render ***')
+    console.log('\n*** Update Render ***')
     console.log('USF-Render: props: ', this.props);
     console.log("USF-Render State: ", this.state)
     return (

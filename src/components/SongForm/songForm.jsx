@@ -70,6 +70,9 @@ class ModalPage extends Component {
   }
 
   render() {
+    console.log('\n*** ADD Render ***')
+    console.log('ASF-Render: props: ', this.props);
+    console.log('ASF-Render State: ', this.state)
     return (
 
       <MDBModal isOpen={this.state.modal} toggle={() => this.toggle}>
