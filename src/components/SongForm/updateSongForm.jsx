@@ -54,29 +54,33 @@ class ModalPage extends Component {
       );
   }
 
-  shouldComponentUpdate(nextProps){
-    console.log('**USF-Should Component Update**')
-    console.log('USF-SCU NextProps: ', nextProps)
-    console.log('USF-SCU thisState: ', this.state)
-    if (nextProps.id !== this.state.id ) {
+  componentDidUpdate(prevProps){
+    console.log('\n*** USF-Component Did Update **')
+    console.log('USF-CDU prevProps: ', prevProps)
+    console.log('USF-CDU thisState: ', this.state)
+    if (prevProps.id !== this.state.id ) {
+
+      this.setState((state, props) => ({
+        id: props.id
+      }));
+
       // this.setState({
-      //   id: nextProps.id,
-      //   track: nextProps.track,
-      //   title: nextProps.title,
-      //   artist: nextProps.artist,
-      //   album: nextProps.album,
-      //   release_date: nextProps.release_date,
-      //   likes: nextProps.likes}) 
-      console.log("USF-SCU State:", this.state)
-      console.log('USF-SCU: state updated')
-      return true
+      //   id: prevProps.id,
+      //   track: prevProps.track,
+      //   title: prevProps.title,
+      //   artist: prevProps.artist,
+      //   album: prevProps.album,
+      //   release_date: prevProps.release_date,
+      //   likes: prevProps.likes}) 
+      console.log("USF-CDU Post setState:", this.state.id)
+      console.log('USF-CDU: state updated <---------------------------')
     }
     else
       console.log('USF-SCU: no change detected')
-      return false
   }
 
   render() {
+    console.log('\n*** Render ***')
     console.log('USF-Render: props: ', this.props);
     console.log("USF-Render State: ", this.state)
     return (
@@ -92,7 +96,7 @@ class ModalPage extends Component {
                 validate error="wrong" success="right" />
 
               <MDBInput label="Title" name="title" icon="signature" group type="text"
-                value={this.state.title} onChange={this.handleChange} 
+                value={this.props.title} onChange={this.handleChange} 
                 validate error="wrong" success="right" />
 
               <MDBInput label="Artist" name="artist" icon="user" group type="text" 

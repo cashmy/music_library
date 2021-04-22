@@ -25,7 +25,6 @@ const MusicTable = (props) => {
     }
 
     const handleOnClickEdit = (song) => {
-        console.log('MT-hOCE-Song: ', song)
         songParam['id'] = song.id
         songParam['track'] = song.track
         songParam['title'] = song.title
@@ -33,8 +32,9 @@ const MusicTable = (props) => {
         songParam['album'] = song.album
         songParam['release_date'] = song.release_date
         songParam['likes'] = song.likes
-
-        console.log('MT-hOCE-SongParam: ', songParam)
+        
+        console.log('\n *** Music Table ***: ')
+        console.log('MT-hOCE SongParam: ', songParam)
         editSong.current.toggle();
     }
 
