@@ -38,8 +38,6 @@ const MusicTable = (props) => {
         songUpdParam['release_date'] = song.release_date
         songUpdParam['likes'] = song.likes
         
-        console.log('\n *** Music Table ***: ')
-        console.log('MT-hOCE SongUpdParam: ', songUpdParam)
         editSong.current.toggle();
     }
 
@@ -47,9 +45,7 @@ const MusicTable = (props) => {
         songDelParam['id'] = song.id
         songDelParam['title'] = song.title
         songDelParam['artist'] = song.artist
-        
-        console.log('\n *** Music Table ***: ')
-        console.log('MT-hOCD SongDelParam: ', songDelParam)
+    
         deleteSong.current.toggle();
     }
 

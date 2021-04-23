@@ -35,7 +35,7 @@ class DeleteModalPage extends Component {
          .then(response => this.setState({ updatedAt: response.data.updatedAt }))
          .catch(error => {
            this.setState({ errorMessage: error.message });
-           console.error('There was an error!', error);
+           alert('There was an error! ' + error.message);
         }
       );
   }

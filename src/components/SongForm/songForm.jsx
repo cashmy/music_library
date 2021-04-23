@@ -38,13 +38,11 @@ class ModalPage extends Component {
       likes: this.state.likes
     }
 
-    console.log("Song:", song)
-    console.log("Now Posting")
     axios.post('http://127.0.0.1:8000/songs/', (song))
          .then(response => this.setState({ updatedAt: response.data.updatedAt }))
          .catch(error => {
            this.setState({ errorMessage: error.message });
-           console.error('There was an error!', error);
+           alert('There was an error! ' + error.message);
         }
       );
     
