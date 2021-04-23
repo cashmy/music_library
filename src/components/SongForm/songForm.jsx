@@ -74,8 +74,9 @@ class ModalPage extends Component {
     console.log('ASF-Render: props: ', this.props);
     console.log('ASF-Render State: ', this.state)
     return (
-
-      <MDBModal isOpen={this.state.modal} toggle={() => this.toggle}>
+      
+      <MDBModal position="top-left" isOpen={this.state.modal} toggle={() => this.toggle}>
+                        
         <MDBModalHeader toggle={this.toggle}><strong>Add a Song</strong></MDBModalHeader>
         <MDBModalBody>
           <form onSubmit={this.handleSubmit}>
@@ -109,7 +110,9 @@ class ModalPage extends Component {
             <MDBBtn color="primary" type="submit" >Add</MDBBtn>
           </form>
         </MDBModalBody>
+
       </MDBModal>
+
 
     );
   }

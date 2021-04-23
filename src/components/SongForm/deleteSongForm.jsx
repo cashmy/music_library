@@ -25,11 +25,13 @@ class DeleteModalPage extends Component {
   }
 
   handleSubmit = event => {
-    const song = {
-      id: this.props.id,
-    }
+    // event.preventDefault();
+    console.log('DSF-hS props: ', this.props)
 
-    axios.delete('http://127.0.0.1:8000/songs/', (song))
+    const song = this.props.props['id']
+
+    console.log('DSF-hS song: ', song)
+    axios.delete('http://127.0.0.1:8000/songs/'+song)
     .then(res => {
       console.log(res);
       console.log(res.data);
@@ -44,6 +46,25 @@ class DeleteModalPage extends Component {
       );
   }
 
+  componentDidUpdate(prevProps){
+    console.log('\n*** DSF-Component Did Update **')
+    console.log('DSF-CDU prevProps: ', prevProps)
+    console.log(prevProps.props.id)
+    console.log(prevProps.props.title)
+    console.log('DSF-CDU thisState: ', this.state)
+    if (prevProps.props.id !== this.state.id ) {
+      this.setState({
+        id: prevProps.props.id,
+        title: prevProps.props.title,
+        artist: prevProps.props.artist}) 
+      console.log("DSF-CDU Post setState:", this.state.id)
+      console.log('DSF-CDU: state updated <---------------------------')
+    }
+    else
+      console.log('DSF-SCU: no change detected')
+  }
+
+
   render() {
     console.log('\n*** Delete Render ***')
     console.log('DSF-Render: props: ', this.props);
@@ -57,7 +78,7 @@ class DeleteModalPage extends Component {
             <div className="grey-text">
 
               <MDBInput label="Title" name="title" icon="signature" group type="text"
-                value={this.props.title} onChange={this.handleChange} 
+                value={this.state.title} onChange={this.handleChange} 
                 validate error="wrong" success="right" />
 
               <MDBInput label="Artist" name="artist" icon="user" group type="text" 

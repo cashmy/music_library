@@ -20,34 +20,36 @@ const MusicTable = (props) => {
     const addSong=useRef();
     const editSong=useRef();
     const deleteSong=useRef();
+    let tableEntries = 20; 
 
-    const songParam = {};
+    const songUpdParam = {};
+    const songDelParam = {};
 
     const handleOnClickAdd = () => {
         addSong.current.toggle();
     }
 
     const handleOnClickEdit = (song) => {
-        songParam['id'] = song.id
-        songParam['track'] = song.track
-        songParam['title'] = song.title
-        songParam['artist'] = song.artist
-        songParam['album'] = song.album
-        songParam['release_date'] = song.release_date
-        songParam['likes'] = song.likes
+        songUpdParam['id'] = song.id
+        songUpdParam['track'] = song.track
+        songUpdParam['title'] = song.title
+        songUpdParam['artist'] = song.artist
+        songUpdParam['album'] = song.album
+        songUpdParam['release_date'] = song.release_date
+        songUpdParam['likes'] = song.likes
         
         console.log('\n *** Music Table ***: ')
-        console.log('MT-hOCE SongParam: ', songParam)
+        console.log('MT-hOCE SongUpdParam: ', songUpdParam)
         editSong.current.toggle();
     }
 
     const handleOnClickDelete = (song) => {
-        songParam['id'] = song.id
-        songParam['title'] = song.title
-        songParam['artist'] = song.artist
+        songDelParam['id'] = song.id
+        songDelParam['title'] = song.title
+        songDelParam['artist'] = song.artist
         
         console.log('\n *** Music Table ***: ')
-        console.log('MT-hOCD SongParam: ', songParam)
+        console.log('MT-hOCD SongDelParam: ', songDelParam)
         deleteSong.current.toggle();
     }
 
@@ -153,6 +155,7 @@ const MusicTable = (props) => {
                                 </MDBCardHeader>
                                 <MDBCardBody className="black-text">
                                     <MDBDataTable
+                                        entries={tableEntries}
                                         autowidth
                                         scrollX
                                         scrollY 
@@ -170,8 +173,8 @@ const MusicTable = (props) => {
                     </MDBRow>
                 </MDBContainer>
                 <SongForm ref={addSong} />
-                <UpdateSongForm props={songParam} ref={editSong} />
-                <DeleteSongForm props={songParam} ref={deleteSong} />
+                <UpdateSongForm props={songUpdParam} ref={editSong} />
+                <DeleteSongForm props={songDelParam} ref={deleteSong} />
             </MDBMask>
 
 

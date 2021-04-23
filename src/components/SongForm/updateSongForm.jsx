@@ -38,8 +38,8 @@ class UpdateModalPage extends Component {
       release_date: this.state.release_date,
       likes: this.state.likes
     }
-
-    axios.put('http://127.0.0.1:8000/songs/', (song))
+    console.log('USF-hS song: ', song)
+    axios.put('http://127.0.0.1:8000/songs/'+this.state.id, song)
     .then(res => {
       console.log(res);
       console.log(res.data);
@@ -57,21 +57,18 @@ class UpdateModalPage extends Component {
   componentDidUpdate(prevProps){
     console.log('\n*** USF-Component Did Update **')
     console.log('USF-CDU prevProps: ', prevProps)
+    console.log(prevProps.props.id)
+    console.log(prevProps.props.title)
     console.log('USF-CDU thisState: ', this.state)
-    if (prevProps.id !== this.state.id ) {
-
-      this.setState((state, props) => ({
-        id: props.id
-      }));
-
-      // this.setState({
-      //   id: prevProps.id,
-      //   track: prevProps.track,
-      //   title: prevProps.title,
-      //   artist: prevProps.artist,
-      //   album: prevProps.album,
-      //   release_date: prevProps.release_date,
-      //   likes: prevProps.likes}) 
+    if (prevProps.props.id !== this.state.id ) {
+      this.setState({
+        id: prevProps.props.id,
+        track: prevProps.props.track,
+        title: prevProps.props.title,
+        artist: prevProps.props.artist,
+        album: prevProps.props.album,
+        release_date: prevProps.props.release_date,
+        likes: prevProps.props.likes}) 
       console.log("USF-CDU Post setState:", this.state.id)
       console.log('USF-CDU: state updated <---------------------------')
     }
@@ -85,7 +82,7 @@ class UpdateModalPage extends Component {
     console.log("USF-Render State: ", this.state)
     return (
 
-      <MDBModal isOpen={this.state.modal} toggle={() => this.toggle}>
+      <MDBModal  position="top-right" isOpen={this.state.modal} toggle={() => this.toggle}>
         <MDBModalHeader className="editmodal" toggle={this.toggle}><strong>Update a Song</strong></MDBModalHeader>
         <MDBModalBody>
           <form onSubmit={this.handleSubmit}>
@@ -96,7 +93,7 @@ class UpdateModalPage extends Component {
                 validate error="wrong" success="right" />
 
               <MDBInput label="Title" name="title" icon="signature" group type="text"
-                value={this.props.title} onChange={this.handleChange} 
+                value={this.state.title} onChange={this.handleChange} 
                 validate error="wrong" success="right" />
 
               <MDBInput label="Artist" name="artist" icon="user" group type="text" 
