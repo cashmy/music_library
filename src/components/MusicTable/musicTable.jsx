@@ -35,9 +35,10 @@ const MusicTable = (props) => {
         songUpdParam['title'] = song.title
         songUpdParam['artist'] = song.artist
         songUpdParam['album'] = song.album
+        songUpdParam['genre'] = song.genre
         songUpdParam['release_date'] = song.release_date
         songUpdParam['likes'] = song.likes
-        
+
         editSong.current.toggle();
     }
 
@@ -94,6 +95,11 @@ const MusicTable = (props) => {
             {
                 label: 'Album',
                 field: 'album',
+                sort: 'asc'
+            },
+            {
+                label: 'Genre',
+                field: 'genre',
                 sort: 'asc'
             },
             {

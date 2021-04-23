@@ -12,6 +12,7 @@ class UpdateModalPage extends Component {
       title: '',
       artist: '',
       album: '',
+      genre: '',
       release_date: '',
       likes: 0,
     }
@@ -35,6 +36,7 @@ class UpdateModalPage extends Component {
       title: this.state.title,
       artist: this.state.artist,
       album: this.state.album,
+      genre: this.state.genre,
       release_date: this.state.release_date,
       likes: this.state.likes
     }
@@ -63,6 +65,7 @@ class UpdateModalPage extends Component {
         title: prevProps.props.title,
         artist: prevProps.props.artist,
         album: prevProps.props.album,
+        genre: prevProps.props.genre,
         release_date: prevProps.props.release_date,
         likes: prevProps.props.likes}) 
     }
@@ -91,6 +94,10 @@ class UpdateModalPage extends Component {
 
               <MDBInput label="Album" name="album" icon="record-vinyl" group type="text"
                 value={this.state.album} onChange={this.handleChange}
+                validate error="wrong" success="right" />
+
+              <MDBInput label="Genre" name="genre" icon="layer-group" group type="text"
+                value={this.state.genre} onChange={this.handleChange}
                 validate error="wrong" success="right" />
 
               <MDBInput icon='calendar' name="release_date" group type="date"

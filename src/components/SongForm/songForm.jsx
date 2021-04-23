@@ -12,6 +12,7 @@ class ModalPage extends Component {
       title: '',
       artist: '',
       album: '',
+      genre: '',
       release_date: '',
       likes: 0
     }
@@ -34,6 +35,7 @@ class ModalPage extends Component {
       title: this.state.title,
       artist: this.state.artist,
       album: this.state.album,
+      genre: this.state.genre,
       release_date: this.state.release_date,
       likes: this.state.likes
     }
@@ -51,6 +53,7 @@ class ModalPage extends Component {
       title: '',
       artist: '',
       album: '',
+      genre: '',
       release_date: '',
       likes: 0
     })
@@ -87,6 +90,10 @@ class ModalPage extends Component {
 
               <MDBInput label="Album" name="album" icon="record-vinyl" group type="text"
                 value={this.state.album} onChange={this.handleChange}
+                validate error="wrong" success="right" />
+
+              <MDBInput label="Genre" name="genre" icon="layer-group" group type="text"
+                value={this.state.genre} onChange={this.handleChange}
                 validate error="wrong" success="right" />
 
               <MDBInput icon='calendar' name="release_date" group type="date"
