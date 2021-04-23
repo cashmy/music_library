@@ -32,12 +32,12 @@ class DeleteModalPage extends Component {
 
     console.log('DSF-hS song: ', song)
     axios.delete('http://127.0.0.1:8000/songs/'+song)
-    .then(res => {
-      console.log(res);
-      console.log(res.data);
-      }
-    )
-    
+         .then(response => this.setState({ updatedAt: response.data.updatedAt }))
+         .catch(error => {
+           this.setState({ errorMessage: error.message });
+           console.error('There was an error!', error);
+        }
+      );
   }
 
   toggle = () => {
@@ -47,28 +47,17 @@ class DeleteModalPage extends Component {
   }
 
   componentDidUpdate(prevProps){
-    console.log('\n*** DSF-Component Did Update **')
-    console.log('DSF-CDU prevProps: ', prevProps)
-    console.log(prevProps.props.id)
-    console.log(prevProps.props.title)
-    console.log('DSF-CDU thisState: ', this.state)
+
     if (prevProps.props.id !== this.state.id ) {
       this.setState({
         id: prevProps.props.id,
         title: prevProps.props.title,
         artist: prevProps.props.artist}) 
-      console.log("DSF-CDU Post setState:", this.state.id)
-      console.log('DSF-CDU: state updated <---------------------------')
     }
-    else
-      console.log('DSF-SCU: no change detected')
   }
 
 
   render() {
-    console.log('\n*** Delete Render ***')
-    console.log('DSF-Render: props: ', this.props);
-    console.log('DSF-Render State: ', this.state)
     return (
 
       <MDBModal isOpen={this.state.modal} toggle={() => this.toggle}>

@@ -38,13 +38,14 @@ class UpdateModalPage extends Component {
       release_date: this.state.release_date,
       likes: this.state.likes
     }
-    console.log('USF-hS song: ', song)
+
     axios.put('http://127.0.0.1:8000/songs/'+this.state.id, song)
-    .then(res => {
-      console.log(res);
-      console.log(res.data);
-      }
-    )
+        .then(response => this.setState({ updatedAt: response.data.updatedAt }))
+        .catch(error => {
+          this.setState({ errorMessage: error.message });
+          console.error('There was an error!', error);
+        }
+      );
     
   }
 
@@ -55,11 +56,6 @@ class UpdateModalPage extends Component {
   }
 
   componentDidUpdate(prevProps){
-    console.log('\n*** USF-Component Did Update **')
-    console.log('USF-CDU prevProps: ', prevProps)
-    console.log(prevProps.props.id)
-    console.log(prevProps.props.title)
-    console.log('USF-CDU thisState: ', this.state)
     if (prevProps.props.id !== this.state.id ) {
       this.setState({
         id: prevProps.props.id,
@@ -69,17 +65,10 @@ class UpdateModalPage extends Component {
         album: prevProps.props.album,
         release_date: prevProps.props.release_date,
         likes: prevProps.props.likes}) 
-      console.log("USF-CDU Post setState:", this.state.id)
-      console.log('USF-CDU: state updated <---------------------------')
     }
-    else
-      console.log('USF-SCU: no change detected')
   }
 
   render() {
-    console.log('\n*** Update Render ***')
-    console.log('USF-Render: props: ', this.props);
-    console.log("USF-Render State: ", this.state)
     return (
 
       <MDBModal  position="top-right" isOpen={this.state.modal} toggle={() => this.toggle}>

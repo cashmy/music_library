@@ -41,13 +41,13 @@ class ModalPage extends Component {
     console.log("Song:", song)
     console.log("Now Posting")
     axios.post('http://127.0.0.1:8000/songs/', (song))
-    .then(res => {
-      console.log(res);
-      console.log(res.data);
-      }
-    )
+         .then(response => this.setState({ updatedAt: response.data.updatedAt }))
+         .catch(error => {
+           this.setState({ errorMessage: error.message });
+           console.error('There was an error!', error);
+        }
+      );
     
-    console.log("Resetting State")
     this.setState ( { 
       track: 0, 
       title: '',
@@ -56,23 +56,16 @@ class ModalPage extends Component {
       release_date: '',
       likes: 0
     })
-    console.log('Trying to toggle close...')
-     
-
   }
 
   toggle = () => {
     this.setState(
-      {modal: !this.state.modal},
-      () => console.log('Modal state:', this.state.modal)
+      {modal: !this.state.modal}
     );
     
   }
 
   render() {
-    console.log('\n*** ADD Render ***')
-    console.log('ASF-Render: props: ', this.props);
-    console.log('ASF-Render State: ', this.state)
     return (
       
       <MDBModal position="top-left" isOpen={this.state.modal} toggle={() => this.toggle}>
