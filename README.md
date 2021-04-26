@@ -32,5 +32,6 @@ Background Article")
 
 ### Technical Issues
 
-As of this update 04/26/2021: MDBReact installation will require the --force option:
-npm i mdbreact --force
+As of this update 04/26/2021: MDBReact installation will require the --force option
+
+`npm i mdbreact --force`
