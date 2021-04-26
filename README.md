@@ -6,7 +6,9 @@ Music Library CRUD application that works with songs-api (Django REST API)
 
 ### Blog Posts: 
 Some things I learned while doing this project:
-['Quirks? - Background Images and MDBootstrap (for React)'](https://cashmy.medium.com/quirks-background-images-and-mdbootstrap-for-react-2d4934a37f7f "MDBootstrap for React Background Article"
+
+[Quirks? - Background Images and MDBootstrap (for React)](https://cashmy.medium.com/quirks-background-images-and-mdbootstrap-for-react-2d4934a37f7f "MDBootstrap for React 
+Background Article")
 
 ### Style Notes:
 
