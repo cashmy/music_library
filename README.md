@@ -2,7 +2,7 @@
 Music Library CRUD application that works with songs-api (Django REST API)
 
 ### Screen Shot
-<img src =""
+<img src ="https://github.com/cashmy/music_library/blob/master/src/assets/images/digital-library-621x388.JPG">
 
 ### Style Notes:
 
